@@ -1,0 +1,21 @@
+PROCEDURE "sn.snhdb::CreateCountry"(in im_continent varchar(20), in im_country varchar(20),
+out ex_error varchar(100) )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   --READS SQL DATA 
+   AS
+BEGIN
+declare noc integer;
+
+select count("continent") into noc from "sn.snhdb::Worldmap.world" where "continent"=:im_continent;
+if :noc=0 then ex_error= 'The Region ' || :im_continent || ' does not exist.';
+else
+	select count("name") into noc from "sn.snhdb::Worldmap.country" where "name"=:im_country;
+	if :noc>0 then ex_error= 'The Country ' || :im_country || ' already exists.';
+	else
+	insert into "sn.snhdb::Worldmap.country" values (:im_country,:im_continent);
+	ex_error =1;
+    end if;
+end if;
+END

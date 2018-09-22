@@ -1,0 +1,3 @@
+service{
+"sn.snhdb::sncds.customer" as "Customer";
+}

@@ -1,0 +1,24 @@
+ID: sn
+_schema-version: '3.1'
+version: 0.0.1
+modules:
+  - name: snhdb
+    type: hdb
+    path: snhdb
+    requires:
+      - name: hdi_snhdb
+  - name: snnode
+    type: nodejs
+    path: snnode
+    provides:
+      - name: snnode_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_snhdb
+      - name: snhdb
+resources:
+  - name: hdi_snhdb
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container

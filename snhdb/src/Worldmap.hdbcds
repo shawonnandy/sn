@@ -1,0 +1,15 @@
+namespace sn.snhdb;
+
+context Worldmap {
+
+    /*@@layout{"layoutInfo":{"x":462,"y":84.5}}*/
+    entity world {
+        key continent : String(30);
+    };
+
+    /*@@layout{"layoutInfo":{"x":177,"y":83.5}}*/
+    entity country {
+        key name     : String(20);
+            Regionto : association[0..1] to Worldmap.world;
+    };
+};

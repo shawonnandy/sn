@@ -1,0 +1,11 @@
+namespace sn.snhdb;
+
+context sncds {
+
+    /*@@layout{"layoutInfo":{"x":178,"y":120.5}}*/
+    entity customer {
+        key id     : String(10);
+            name   : String(20);
+            salary : Integer;
+    };
+};
